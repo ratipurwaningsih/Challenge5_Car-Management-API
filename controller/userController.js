@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 // import bcrypt untuk authentication
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { name } = require('ejs');
 
 async function getUsers(req, res) {
     try {
@@ -105,21 +106,25 @@ async function createUser(req, res) {
         })
 
         // Validasi uniq name
-        
-        
-        res.status(201).json({
-            status: 'success',
-            data : {
-                users: newUser
-            }
-        })
-    
-        } catch (err) {
-            res.status(400).json({
-                status: 'failed',
-                message : err.message
+        if(!name){
+            res.status(201).json({
+                status: 'success',
+                data: {
+                    user: newUser
+                }
             })
-        }
+        }else{
+            res.status(400).json({
+                status : 'failed',
+                message : `nama ${username} sudah ada, coba nama lain`
+            })
+        } 
+    }catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message : err.message
+        })
+    }
 }
 
 async function login(req, res) {
