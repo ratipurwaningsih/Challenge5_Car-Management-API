@@ -13,7 +13,7 @@ const checkRole = require('../middleware/checkRole');
 // router.use('/api-docs', swaggerUi.serve)
 // router.use('/api-docs', swaggerUi.setup(swaggerDocument))
 
-router.get('/',Auth, shopController.getShops)
+router.get('/', shopController.getShops)
 router.get('/:id',Auth, shopController.getShopById)
 router.get('/search',Auth, shopController.searchShops)
 router.put('/:id',Auth, shopController.editShop)
