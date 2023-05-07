@@ -7,8 +7,8 @@
     },
     "tags": [
         {
-            "name": "Shops",
-            "description": "This is API for managing CRUD SHOPS"
+            "name": "Binar-Challenge-5",
+            "description": "This is API for managing CRUD SHOPS, USERS and PRODUCTS"
         }
     ],
     "servers": [
@@ -122,6 +122,230 @@
                     }
                 }
             }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Returns a list of users.",
+                "description": "This is API for get all users data",
+                "responses": {
+                    "200": {
+                        "description": "Success get users data"
+                    }
+                }
+            }
+        },
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Success creaete Users",
+                "description": "This is API for create new users",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success create new users",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "purwaningsih"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "test1234"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new Users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "ratih"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "test1234"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "user"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because name users is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because user name empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Returns a list of products.",
+                "description": "This is API for get all product data",
+                "responses": {
+                    "200": {
+                        "description": "Success products data"
+                    }
+                }
+            }
+        },
+        "/product/create": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Success creaete products",
+                "description": "This is API for create new products",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success create new products",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "avanza"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": 1000
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "shopId": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "avanza"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": 1000
+                                                },
+                                                "stock": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "shopId": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because name product is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because product name empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -138,6 +362,44 @@
                         "example": "bandung"
                     },
                     "userId": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                }
+            },
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "rati"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "test1234"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "user"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "avanza"
+                    },
+                    "price": {
+                        "type": "integer",
+                        "example": 1000
+                    },
+                    "stock": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "shopId": {
                         "type": "integer",
                         "example": 1
                     }
