@@ -234,6 +234,23 @@
                 ],
                 "summary": "Returns a list of search shops.",
                 "description": "This is API for get search shops data",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Name of the shops to get",
+                        "schema": {
+                            "type": "string",
+                            "example": "toko imam"
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success get search shops data"
@@ -666,6 +683,18 @@
                 ],
                 "summary": "Returns a list of search product.",
                 "description": "This is API for get search products data",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Name of the product to get",
+                        "schema": {
+                            "type": "string",
+                            "example": "avanza"
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success get search products data"
