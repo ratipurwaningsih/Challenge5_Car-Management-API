@@ -117,13 +117,30 @@
                 }
             }
         },
-        "/shops/:id": {
+        "/shops/{id}": {
             "get": {
                 "tags": [
                     "Shops"
                 ],
                 "summary": "Returns a list of shops by id.",
                 "description": "This is API for get all shops data",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success get shops data"
@@ -136,6 +153,44 @@
                 ],
                 "summary": "Returns a list of shops by id.",
                 "description": "This is API for put shops data by id",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success login user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "toko ratih"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "brebes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success put shops data by id"
@@ -148,6 +203,23 @@
                 ],
                 "summary": "Returns a list of shops by id.",
                 "description": "This is API for delete shops data by id",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success delete shops data by id"
@@ -183,13 +255,25 @@
                 }
             }
         },
-        "/users/:id": {
+        "/users/{id}": {
             "get": {
                 "tags": [
                     "Users"
                 ],
                 "summary": "Returns a list of users.",
                 "description": "This is API for get users data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success get users data"
@@ -202,6 +286,43 @@
                 ],
                 "summary": "Returns a list of users.",
                 "description": "This is API for put users data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success login user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "ratih"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "test1234"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success put users data by id"
@@ -214,6 +335,18 @@
                 ],
                 "summary": "Returns a list of users.",
                 "description": "This is API for delete users data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success delete users data by id"
@@ -423,13 +556,25 @@
                 }
             }
         },
-        "/product/:id": {
+        "/product/{id}": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Returns a list of products.",
                 "description": "This is API for get product data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the product to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success products data by id"
@@ -442,6 +587,47 @@
                 ],
                 "summary": "Returns a list of edit product by id.",
                 "description": "This is API for put product data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the product to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success login user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "avanza"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": 1000
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "shopId": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success put product data by id"
@@ -454,6 +640,18 @@
                 ],
                 "summary": "Returns a list of delete product by id.",
                 "description": "This is API for delete product data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numeric ID of the product to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success delete product data by id"
