@@ -5,12 +5,6 @@
         "description": "API description in Markdown.",
         "version": "1.0.0"
     },
-    "tags": [
-        {
-            "name": "Binar-Challenge-5",
-            "description": "This is API for managing CRUD SHOPS, USERS and PRODUCTS"
-        }
-    ],
     "servers": [
         {
             "url": "http://localhost:3000/api/v1/"
@@ -123,6 +117,58 @@
                 }
             }
         },
+        "/shops/:id": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Returns a list of shops by id.",
+                "description": "This is API for get all shops data",
+                "responses": {
+                    "200": {
+                        "description": "Success get shops data"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Returns a list of shops by id.",
+                "description": "This is API for put shops data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success put shops data by id"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Returns a list of shops by id.",
+                "description": "This is API for delete shops data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success delete shops data by id"
+                    }
+                }
+            }
+        },
+        "/shops/search": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Returns a list of search shops.",
+                "description": "This is API for get search shops data",
+                "responses": {
+                    "200": {
+                        "description": "Success get search shops data"
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "tags": [
@@ -133,6 +179,44 @@
                 "responses": {
                     "200": {
                         "description": "Success get users data"
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Returns a list of users.",
+                "description": "This is API for get users data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success get users data"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Returns a list of users.",
+                "description": "This is API for put users data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success put users data by id"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Returns a list of users.",
+                "description": "This is API for delete users data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success delete users data by id"
                     }
                 }
             }
@@ -159,7 +243,7 @@
                                 "properties": {
                                     "username": {
                                         "type": "string",
-                                        "example": "purwaningsih"
+                                        "example": "ratih"
                                     },
                                     "password": {
                                         "type": "string",
@@ -231,6 +315,100 @@
                 }
             }
         },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Success creaete Users",
+                "description": "This is API for login users",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success login users",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "ratih"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "test1234"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success login Users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "ratih"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "test1234"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "user"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because name users is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because user name empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/product": {
             "get": {
                 "tags": [
@@ -241,6 +419,58 @@
                 "responses": {
                     "200": {
                         "description": "Success products data"
+                    }
+                }
+            }
+        },
+        "/product/:id": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Returns a list of products.",
+                "description": "This is API for get product data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success products data by id"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Returns a list of edit product by id.",
+                "description": "This is API for put product data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success put product data by id"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Returns a list of delete product by id.",
+                "description": "This is API for delete product data by id",
+                "responses": {
+                    "200": {
+                        "description": "Success delete product data by id"
+                    }
+                }
+            }
+        },
+        "/product/search": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Returns a list of search product.",
+                "description": "This is API for get search products data",
+                "responses": {
+                    "200": {
+                        "description": "Success get search products data"
                     }
                 }
             }
