@@ -2,9 +2,11 @@ const { users, shops } = require('../models');
 const { Op } = require("sequelize");
 // import bcrypt untuk authentication
 const bcrypt = require('bcrypt');
+// import jwt sebagai autorization
 const jwt = require('jsonwebtoken');
 const { name } = require('ejs');
 
+// untuk menampilkan semua user
 async function getUsers(req, res) {
     try {
         const data = await users.findAll();
@@ -21,6 +23,7 @@ async function getUsers(req, res) {
     }
 }
 
+// mencari user by id
 async function getUserById(req, res) {
     try{
         // Primary Key = Pk
@@ -53,6 +56,7 @@ async function getUserById(req, res) {
     }    
 }
 
+// mengedit username
 async function editUser(req, res) {
     try {
         const {username} = req.body;
@@ -63,18 +67,27 @@ async function editUser(req, res) {
     }, {
         where: {id}
     })
-    res.status(200).json({
-        status: 'success',
-        message: `data dari id ${id} nya berhasil berubah`
-    })
-    } catch (err) {
+
+    if(username.length>3) {
+        res.status(200).json({
+            status: 'success',
+            message: `data dari id ${id} nya berhasil berubah`
+        })
+    }else {
         res.status(400).json({
             status: 'failed',
             message : err.message
         })
     }
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message : `nama tidak boleh kurang dari 3 huruf`
+        })
+    }
 }
 
+// Menghapus user
 async function deleteUser(req, res) {
     try {
         const id = req.params.id
@@ -93,14 +106,21 @@ async function deleteUser(req, res) {
     }
 }
 
+// membuat user
 async function createUser(req, res) {
     try {
         const {username, password} = req.body
         // proses enkripsi password
         const hashedPassword = bcrypt.hashSync(password, 10);
 
+        const name = await users.findOne({
+            where:{
+                username
+            }})
+
         const newUser = await users.create({
             username,
+            // enkripsi di database
             password : hashedPassword,
             role: req.body.role
         })
@@ -127,6 +147,7 @@ async function createUser(req, res) {
     }
 }
 
+// login
 async function login(req, res) {
     try {
         const {username, password} = req.body
